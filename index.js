@@ -4,19 +4,25 @@ const form = document.querySelector('#new-item-form')
 const input = form.querySelector('input')
 const xmasList = document.querySelector('ul')
 
-form.addEventListener("submit", function(event) {
+function handleSubmit(event) {
   event.preventDefault()
+
   const newItemText = input.value
+
   let li = document.createElement('li')
   li.innerHTML = newItemText
   xmasList.appendChild(li)
-  input.value = ""
-})
 
-// let ul = document.createElement('ul')
-//
-// let li = document.createElement('li')
-// li.innerHTML = (i + 1).toString()
-// ul.appendChild(li)
-//
-// element.appendChild(ul)
+  const xButton = document.createElement('img')
+  xButton.src = "images/red-x.png"
+  xButton.className = "x-button"
+  xButton.alt = "remove"
+  xButton.addEventListener('click', e => li.remove() )
+  li.appendChild(xButton)
+
+  input.value = ""
+}
+
+form.addEventListener("submit", handleSubmit)
+
+// <img class="x-button" src="images/red-x.png" alt="we shouldn't see this">
